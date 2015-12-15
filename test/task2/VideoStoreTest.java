@@ -14,8 +14,8 @@ public class VideoStoreTest {
 
     @Test
     public void testSingleNewReleaseStatement() {
-	customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE),
-		3));
+	customer.addRental(new Rental(new Movie("The Cell",
+		Movie.PriceCode.NEW_RELEASE), 3));
 	assertEquals(
 		"Rental Record for Fred" + System.lineSeparator()
 			+ "\tThe Cell\t9.0" + System.lineSeparator()
@@ -26,10 +26,10 @@ public class VideoStoreTest {
 
     @Test
     public void testDualNewReleaseStatement() {
-	customer.addRental(new Rental(new Movie("The Cell", Movie.NEW_RELEASE),
-		3));
+	customer.addRental(new Rental(new Movie("The Cell",
+		Movie.PriceCode.NEW_RELEASE), 3));
 	customer.addRental(new Rental(new Movie("The Tigger Movie",
-		Movie.NEW_RELEASE), 3));
+		Movie.PriceCode.NEW_RELEASE), 3));
 	assertEquals(
 		"Rental Record for Fred" + System.lineSeparator()
 			+ "\tThe Cell\t9.0" + System.lineSeparator()
@@ -42,7 +42,7 @@ public class VideoStoreTest {
     @Test
     public void testSingleChildrensStatement() {
 	customer.addRental(new Rental(new Movie("The Tigger Movie",
-		Movie.CHILDRENS), 3));
+		Movie.PriceCode.CHILDRENS), 3));
 	assertEquals(
 		"Rental Record for Fred" + System.lineSeparator()
 			+ "\tThe Tigger Movie\t1.5" + System.lineSeparator()
@@ -54,9 +54,11 @@ public class VideoStoreTest {
     @Test
     public void testMultipleRegularStatement() {
 	customer.addRental(new Rental(new Movie("Plan 9 from Outer Space",
-		Movie.REGULAR), 1));
-	customer.addRental(new Rental(new Movie("8 1/2", Movie.REGULAR), 2));
-	customer.addRental(new Rental(new Movie("Eraserhead", Movie.REGULAR), 3));
+		Movie.PriceCode.REGULAR), 1));
+	customer.addRental(new Rental(new Movie("8 1/2",
+		Movie.PriceCode.REGULAR), 2));
+	customer.addRental(new Rental(new Movie("Eraserhead",
+		Movie.PriceCode.REGULAR), 3));
 
 	assertEquals(
 		"Rental Record for Fred" + System.lineSeparator()

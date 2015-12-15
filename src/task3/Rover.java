@@ -39,8 +39,7 @@ public class Rover {
     }
 
     public String getPosition() {
-	if (coordinates.move(1)) {
-	    coordinates.move(-1);
+	if (!coordinates.isThereAnyObstacleInFront()) {
 	    char directionChar = coordinates.getDirection().toString()
 		    .charAt(0);
 	    return String.format("%d X %d %c",

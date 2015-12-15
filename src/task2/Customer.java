@@ -64,24 +64,24 @@ public class Customer {
 
     // TODO move that logic to rental
     private boolean earnAdditionalFrequentPoint(Rental rental) {
-	return rental.getMovie().getPriceCode() == Movie.NEW_RELEASE
+	return rental.getMovie().getPriceCode() == Movie.PriceCode.NEW_RELEASE
 		&& rental.getDaysRented() > 1;
     }
 
     // TODO move that logic to rental
     private double calculateRentalAmount(Rental rental) {
 	switch (rental.getMovie().getPriceCode()) {
-	case Movie.REGULAR: {
+	case REGULAR: {
 	    double rentalAmount = 2;
 	    if (rental.getDaysRented() > 2) {
 		rentalAmount += (rental.getDaysRented() - 2) * 1.5;
 	    }
 	    return rentalAmount;
 	}
-	case Movie.NEW_RELEASE: {
+	case NEW_RELEASE: {
 	    return rental.getDaysRented() * 3;
 	}
-	case Movie.CHILDRENS: {
+	case CHILDRENS: {
 	    double rentalAmount = 1.5;
 	    if (rental.getDaysRented() > 3) {
 		rentalAmount += (rental.getDaysRented() - 3) * 1.5;

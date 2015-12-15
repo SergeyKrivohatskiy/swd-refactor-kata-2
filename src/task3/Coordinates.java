@@ -57,6 +57,14 @@ public class Coordinates {
 	}
     }
 
+    public boolean isThereAnyObstacleInFront() {
+	if (move(1)) {
+	    move(-1);
+	    return false;
+	}
+	return true;
+    }
+
     public boolean move(int dx, int dy) {
 	if (!IsThereAnyObstacle(x.getLocation() + dx, y.getLocation() + dy)) {
 	    x.setLocation(x.getLocation() + dx);
