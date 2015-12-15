@@ -27,12 +27,13 @@ public class Customer {
 	appendTitle(result);
 
 	for (Rental rental : rentals) {
-	    double rentalAmount = calculateRentalAmount(rental);
+	    double rentalAmount = rental.calculateAmount();
 
 	    appentRentalInfo(result, rental, rentalAmount);
 
 	    rentalsAmount += rentalAmount;
-	    frequentRenterPoints += earnAdditionalFrequentPoint(rental) ? 2 : 1;
+	    frequentRenterPoints += rental.earnAdditionalFrequentPoint() ? 2
+		    : 1;
 	}
 
 	appendResume(result, rentalsAmount, frequentRenterPoints);
@@ -60,38 +61,5 @@ public class Customer {
     private void appendTitle(StringBuilder result) {
 	result.append(String.format("Rental Record for %s", getName()));
 	result.append(System.lineSeparator());
-    }
-
-    // TODO move that logic to rental
-    private boolean earnAdditionalFrequentPoint(Rental rental) {
-	return rental.getMovie().getPriceCode() == Movie.PriceCode.NEW_RELEASE
-		&& rental.getDaysRented() > 1;
-    }
-
-    // TODO move that logic to rental
-    private double calculateRentalAmount(Rental rental) {
-	switch (rental.getMovie().getPriceCode()) {
-	case REGULAR: {
-	    double rentalAmount = 2;
-	    if (rental.getDaysRented() > 2) {
-		rentalAmount += (rental.getDaysRented() - 2) * 1.5;
-	    }
-	    return rentalAmount;
-	}
-	case NEW_RELEASE: {
-	    return rental.getDaysRented() * 3;
-	}
-	case CHILDRENS: {
-	    double rentalAmount = 1.5;
-	    if (rental.getDaysRented() > 3) {
-		rentalAmount += (rental.getDaysRented() - 3) * 1.5;
-	    }
-	    return rentalAmount;
-	}
-	default:
-	    throw new RuntimeException(String.format(
-		    "Unprocessed movie price code '%s'! ", rental.getMovie()
-			    .getPriceCode()));
-	}
     }
 }
