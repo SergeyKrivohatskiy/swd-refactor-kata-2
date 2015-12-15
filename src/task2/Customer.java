@@ -88,9 +88,10 @@ public class Customer {
 	    }
 	    return rentalAmount;
 	}
+	default:
+	    throw new RuntimeException(String.format(
+		    "Unprocessed movie price code '%s'! ", rental.getMovie()
+			    .getPriceCode()));
 	}
-	throw new RuntimeException(String.format(
-		"Unprocessed movie price code '%s'! ", rental.getMovie()
-			.getPriceCode()));
     }
 }

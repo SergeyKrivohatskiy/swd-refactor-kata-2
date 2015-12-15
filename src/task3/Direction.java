@@ -1,8 +1,5 @@
 package task3;
 
 public enum Direction {
-  NORTH,
-  EAST,
-  SOUTH,
-  WEST;
+    NORTH, EAST, SOUTH, WEST;
 }
